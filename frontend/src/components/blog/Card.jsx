@@ -5,23 +5,20 @@ import { AiOutlineTags, AiOutlineClockCircle, AiOutlineComment, AiOutlineShareAl
 import { Link } from "react-router-dom"
 
 export const Card = ({ posts }) => {
-  // create file garnebelema
-  const PublicFlo = "http://localhost:5000/images/"
+
   return (
     <>
       <section className='blog'>
         <div className='container grid3'>
           {posts.map((item) => (
             <div className='box boxItems' key={item.id}>
-              {/* first ma yo  <div className='img'>{item.photo && <img src={item.cover} alt='' />}</div>*/}
               <div className='img'>{item.photo && (
-              <img src={PublicFlo + item.photo} alt=""
+              <img src={item.photo} alt=""
                 onError={(e) => {
                   const randomImage = blog[Math.floor(Math.random() * 10)].cover;
                   e.target.src = randomImage;
                   e.onError=null;
-                }}
-                          
+                }}          
               />)}
               </div>
               <div className='details' key={item.id+1}>

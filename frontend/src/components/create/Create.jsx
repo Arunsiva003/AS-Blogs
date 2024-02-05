@@ -12,7 +12,8 @@ export const Create = () => {
   const [desc, setDesc] = useState("")
   const [file, setFile] = useState(null)
   const { user } = useContext(Context)
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [imageUrl,setImageUrl] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("Life");
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -30,19 +31,28 @@ export const Create = () => {
       const filename = Date.now() + file.name
       data.append("name", filename)
       data.append("file", file)
-      newPost.photo = filename
-
+      data.append("upload_preset","pctll1ta");
+      
       try {
-        await axios.post("/upload", data)
+        const cloudinaryResponse = await axios.post("https://api.cloudinary.com/v1_1/dn5iikaas/image/upload", data);
+        console.log(cloudinaryResponse.data.url);
+        
+        newPost.photo = cloudinaryResponse.data.url;
+        setImageUrl(cloudinaryResponse.data.url);
+        
+        console.log("newpost photo: ", newPost.photo);
       } catch (error) {
-        console.log(error)
+        console.error(error);
       }
-    }
-    try {
-      const res = await axios.post("/posts", newPost)
-      window.location.replace("/post/" + res.data._id)
-    } catch (error) {}
+      
+      try {
+        const postResponse = await axios.post("/posts", newPost);
+        window.location.replace("/post/" + postResponse.data._id);
+      } catch (error) {
+        console.error(error);
+      }
   }
+}
 
   return (
     <>

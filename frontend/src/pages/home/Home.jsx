@@ -8,7 +8,6 @@ import {TypingAnimation} from '../../components/typing/typingAnimation';
 export const Home = () => {
   const [posts, setPosts] = useState([])
 
-  // setp 2
   const { search } = useLocation()
   // const location = useLocation()
   //console.log(location)
