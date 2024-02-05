@@ -1,9 +1,35 @@
 const router = require("express").Router()
 const Post = require("../model/Post")
 
+
+
+//comments...
+router.post("/:id/comments", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    post.comments.push({
+      text: req.body.text,
+      username: req.body.username,
+    });
+
+    const updatedPost = await post.save();
+    res.status(201).json(updatedPost);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+
+
+
 //create post
 router.post("/", async (req, res) => {
   const newPost = new Post(req.body)
+  console.log("backend",newPost);
   try {
     const savePost = await newPost.save()
     res.status(200).json(savePost)
@@ -76,6 +102,7 @@ router.get("/:id", async (req, res) => {
 router.get("/", async (req, res) => {
   const username = req.query.user
   const catName = req.query.cat
+  // console.log("from back:",catName);
   try {
     let posts
     if (username) {

@@ -24,7 +24,7 @@ export const Card = ({ posts }) => {
                           
               />)}
               </div>
-              <div className='details'>
+              <div className='details' key={item.id+1}>
                 <div className='tag'>
                   <AiOutlineTags className='icon' />
                   {item.categories.map((c) => (

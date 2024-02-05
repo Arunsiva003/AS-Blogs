@@ -5,22 +5,24 @@ import { useState } from "react"
 import { useContext } from "react"
 import { Context } from "../../context/Context"
 import axios from "axios"
-import { useLocation } from "react-router-dom"
+import { category } from "../../assets/data/data"
 
 export const Create = () => {
   const [title, setTitle] = useState("")
   const [desc, setDesc] = useState("")
   const [file, setFile] = useState(null)
   const { user } = useContext(Context)
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
+    console.log(selectedCategory)
     const newPost = {
       username: user.username,
       title,
       desc,
       file,
+      categories: [selectedCategory], 
     }
 
     if (file) {
@@ -56,6 +58,14 @@ export const Create = () => {
             </div>
             <input type='text' placeholder='Title' onChange={(e) => setTitle(e.target.value)} />
             <textarea name='' id='' cols='30' rows='10' onChange={(e) => setDesc(e.target.value)}></textarea>
+            
+            {/* categories selection */}
+            <select value={selectedCategory} name="category" onChange={(e) => setSelectedCategory(e.target.value)}>
+              {category.map((item,ind)=>(
+                <option key={ind} value={item.category}>{item.category}</option>
+              ))}
+            </select>
+            
             <button className='button'>Create Post</button>
           </form>
         </div>

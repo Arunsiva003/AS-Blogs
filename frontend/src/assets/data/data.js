@@ -11,13 +11,13 @@ export const nav = [
   },
   {
     id: 3,
-    text: "pages",
-    url: "/pages",
+    text: "quiz",
+    url: "/quiz",
   },
   {
     id: 4,
-    text: "blog",
-    url: "/blog",
+    text: "create",
+    url: "/create",
   },
   {
     id: 5,

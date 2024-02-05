@@ -1,4 +1,4 @@
-// setp 1.1
+
 export const LoginStart = (userCredn) => ({
   type: "LOGINSTART",
 })

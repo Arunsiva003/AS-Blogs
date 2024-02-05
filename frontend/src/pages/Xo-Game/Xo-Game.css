@@ -1,0 +1,50 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.status {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+}
+
+.board-row {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  grid-gap: 4px;
+}
+
+.square {
+  width: 100px;
+  height: 100px;
+  font-size: 1.5em;
+  background-color: #ddd;
+  border: 1px solid #999;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.square:hover {
+  background-color: #ccc;
+}
+
+.board-row {
+  display: flex;
+}
+
+.replay-button {
+  margin-top: 10px;
+  padding: 8px;
+  font-size: 1em;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.replay-button:hover {
+  background-color: #45a049;
+}
