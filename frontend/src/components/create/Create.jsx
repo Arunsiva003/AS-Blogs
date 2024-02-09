@@ -46,8 +46,8 @@ export const Create = () => {
       }
       
       try {
-        const postResponse = await axios.post("/posts", newPost);
-        window.location.replace("/post/" + postResponse.data._id);
+        const postResponse = await axios.post("https://as-mern-blog.onrender.com/posts", newPost);
+        window.location.replace("https://as-mern-blog.onrender.com/post/" + postResponse.data._id);
       } catch (error) {
         console.error(error);
       }

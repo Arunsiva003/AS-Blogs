@@ -33,13 +33,13 @@ export const Account = () => {
       updateUser.profilePic = filename
 
       try {
-        await axios.post("/upload", data)
+        await axios.post("https://as-mern-blog.onrender.com/upload", data)
       } catch (error) {
         console.log(error)
       }
     }
     try {
-      const res = await axios.put("/users/" + user._id, updateUser)
+      const res = await axios.put("https://as-mern-blog.onrender.com/users/" + user._id, updateUser)
       setSucc(true)
       dispatch({ type: "UPDATE_SUCC", payload: res.data })
       window.location.reload()
