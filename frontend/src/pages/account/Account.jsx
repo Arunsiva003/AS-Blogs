@@ -8,6 +8,7 @@ export const Account = () => {
   const { user, dispatch } = useContext(Context)
 
   // same from create file
+  const [profilePicUrl, setProfilePicUrl] = useState('');
   const [file, setFile] = useState(null)
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
@@ -16,11 +17,14 @@ export const Account = () => {
   const PublicFlo = "http://localhost:5000/images/"
 
   const handleSubmit = async (e) => {
+
+
     e.preventDefault()
     dispatch({ type: "UPDATE_START" })
     const updateUser = {
       userId: user._id,
       username,
+      profilePic:profilePicUrl,
       email,
       password,
     }
@@ -30,15 +34,19 @@ export const Account = () => {
       const filename = Date.now() + file.name
       data.append("name", filename)
       data.append("file", file)
-      updateUser.profilePic = filename
+      data.append("upload_preset","pctll1ta");
 
+      
       try {
-        await axios.post("https://as-mern-blog.onrender.com/upload", data)
+        const cloudinaryResponse = await axios.post("https://api.cloudinary.com/v1_1/dn5iikaas/image/upload", data)
+        console.log("in acc pic:",cloudinaryResponse.data.url)
+        setProfilePicUrl(cloudinaryResponse.data.url);
       } catch (error) {
         console.log(error)
       }
     }
     try {
+      updateUser.profilePic = profilePicUrl;
       const res = await axios.put("https://as-mern-blog.onrender.com/users/" + user._id, updateUser)
       setSucc(true)
       dispatch({ type: "UPDATE_SUCC", payload: res.data })

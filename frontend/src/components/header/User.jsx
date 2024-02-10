@@ -11,7 +11,7 @@ import UserImg from "../../assets/images/user.jpg";
 
 export const User = () => {
   const { user, dispatch } = useContext(Context)
-
+  console.log("user's profile pic:", user);
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" })
   }
@@ -20,7 +20,7 @@ export const User = () => {
     setProfileOpen(false)
   }
 
-  const PublicFlo = "http://localhost:5000/images/"
+  // const PublicFlo = "https://api.cloudinary.com/v1_1/dn5iikaas/image/upload"
 
   return (
     <>
@@ -28,14 +28,14 @@ export const User = () => {
         {user ? (
           <>
             <button className='img' onClick={() => setProfileOpen(!profileOpen)}>
-              <img src={user.profilePic ? PublicFlo + user.profilePic : UserImg} alt='' />
+              <img src={user && user.profilePic ? user.profilePic : UserImg} alt='' />
             </button>
             {profileOpen && (
               <div className='openProfile boxItems' onClick={close}>
                 <Link to={"/account"}>
                   <div className='image'>
                     <div className='img'>
-                      <img src={PublicFlo + user.profilePic} alt='' />
+                      <img src={user && user.profilePic ? user.profilePic : UserImg} alt='' />
                     </div>
                     <div className='text'>
                       <h4>{user.username}</h4>

@@ -39,7 +39,7 @@ export const Login = () => {
           </div>
 
           <form onSubmit={handleSubmit}>
-            <span>Username or email address *</span>
+            <span>Username *</span>
             <input type='text' required ref={userRef} />
             <span>Password *</span>
             <input type='password' required ref={passRef} />
