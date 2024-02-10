@@ -23,7 +23,7 @@ export const About = () => {
           </div>
         </div>
       </div>
-      <div className="developer-card">
+      {/* <div className="developer-card">
         <img className="avatar" src={Sameerul} alt="Developer Avatar" />
         <div className="developer-info">
           <h2 className="name">Sameerul hak</h2>
@@ -35,9 +35,9 @@ export const About = () => {
             <a href="https://www.linkedin.com/in/sameerul-hak-877194249/" target="_blank" rel="noopener noreferrer">
               <i className="fab fa-linkedin"></i>
             </a>
-          </div>
-        </div>
-      </div>
+          </div>*}
+        // </div> */}
+      {/* </div> */}
     </div>
   );
 };
